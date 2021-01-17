@@ -3,35 +3,56 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import java.io.FileOutputStream;
+
+
 public class CreateXL {
-    /** Excel ÎÄ¼şÒª´æ·ÅµÄÎ»ÖÃ£¬¼Ù¶¨ÔÚFÅÌÏÂ*/
-    public static String outputFile = "F:\\test.xls";
+    /** Excel æ–‡ä»¶è¦å­˜æ”¾çš„ä½ç½®ï¼Œå‡å®šåœ¨Fç›˜ä¸‹*/
+    public static String outputFile = "D:\\test.xls";
     public static void main(String argv[]) {
         try {
-            // ´´½¨ĞÂµÄExcel ¹¤×÷²¾
+            // åˆ›å»ºæ–°çš„Excel å·¥ä½œç°¿
             HSSFWorkbook workbook = new HSSFWorkbook();
-            // ÔÚExcel¹¤×÷²¾ÖĞ½¨Ò»¹¤×÷±í£¬ÆäÃûÎªÈ±Ê¡Öµ
-            // ÈçÒªĞÂ½¨Ò»ÃûÎª"Ğ§ÒæÖ¸±ê"µÄ¹¤×÷±í£¬ÆäÓï¾äÎª£º
-            // HSSFSheet sheet = workbook.createSheet("Ğ§ÒæÖ¸±ê");
-            HSSFSheet sheet = workbook.createSheet();
-            // ÔÚË÷Òı0µÄÎ»ÖÃ´´½¨ĞĞ£¨×î¶¥¶ËµÄĞĞ£©
-            HSSFRow row = sheet.createRow((short)0);
-            //ÔÚË÷Òı0µÄÎ»ÖÃ´´½¨µ¥Ôª¸ñ£¨×óÉÏ¶Ë£©
-            HSSFCell cell = row.createCell((short)0);
-            // ¶¨Òåµ¥Ôª¸ñÎª×Ö·û´®ÀàĞÍ
-            
-            // ÔÚµ¥Ôª¸ñÖĞÊäÈëÒ»Ğ©ÄÚÈİ
-            cell.setCellValue("Ôö¼ÓÖµ");
-            // ĞÂ½¨Ò»Êä³öÎÄ¼şÁ÷
+            // åœ¨Excelå·¥ä½œç°¿ä¸­å»ºä¸€å·¥ä½œè¡¨ï¼Œå…¶åä¸ºç¼ºçœå€¼
+            // å¦‚è¦æ–°å»ºä¸€åä¸º"æ•ˆç›ŠæŒ‡æ ‡"çš„å·¥ä½œè¡¨ï¼Œå…¶è¯­å¥ä¸ºï¼š
+            HSSFSheet sheet = workbook.createSheet("å­¦ç”Ÿæˆç»©");
+            // åœ¨ç´¢å¼•0çš„ä½ç½®åˆ›å»ºè¡Œï¼ˆæœ€é¡¶ç«¯çš„è¡Œï¼‰
+
+
+            String[][] table = {
+                    {"ç§‘ç›®","åˆ†æ•°"},
+                    {"è‹±è¯­","82"},
+                    {"æ•°å­¦","80"}
+            };
+
+            for(int i=0;i<table.length;i++){
+                HSSFRow row = sheet.createRow((short)i);
+                for(int j=0;j<table[i].length;j++){
+                    HSSFCell cell01 = row.createCell((short)j);
+                    cell01.setCellValue(table[i][j]);
+                }
+            }
+
+            /*HSSFRow row02 = sheet.createRow((short)2);//ç¬¬2è¡Œ
+            //åœ¨ç´¢å¼•0çš„ä½ç½®åˆ›å»ºå•å…ƒæ ¼ï¼ˆå·¦ä¸Šç«¯ï¼‰
+            HSSFCell cell05 = row02.createCell((short)0);
+
+            HSSFCell cell06 = row02.createCell((short)1);
+
+            // åœ¨å•å…ƒæ ¼ä¸­è¾“å…¥ä¸€äº›å†…å®¹
+            cell05.setCellValue("è‹±è¯­");
+            cell06.setCellValue("88");*/
+
+
+            // æ–°å»ºä¸€è¾“å‡ºæ–‡ä»¶æµ
             FileOutputStream fOut = new FileOutputStream(outputFile);
-            // °ÑÏàÓ¦µÄExcel ¹¤×÷²¾´æÅÌ
+            // æŠŠç›¸åº”çš„Excel å·¥ä½œç°¿å­˜ç›˜
             workbook.write(fOut);
             fOut.flush();
-            // ²Ù×÷½áÊø£¬¹Ø±ÕÎÄ¼ş
+            // æ“ä½œç»“æŸï¼Œå…³é—­æ–‡ä»¶
             fOut.close();
-            System.out.println("ÎÄ¼şÉú³É...");
+            System.out.println("æ–‡ä»¶ç”Ÿæˆ...");
         } catch (Exception e) {
-            System.out.println("ÒÑÔËĞĞ xlCreate() : " + e);
+            System.out.println("å·²è¿è¡Œ xlCreate() : " + e);
         }
     }
 }

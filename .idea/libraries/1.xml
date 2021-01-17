@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="环境变量配置1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/环境变量配置/poi-4.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/环境变量配置/commons-math3-3.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
